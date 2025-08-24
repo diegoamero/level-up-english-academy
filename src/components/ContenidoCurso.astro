@@ -1,0 +1,202 @@
+---
+// Contenido del Curso component
+---
+
+<section class="contenido-curso">
+  <div class="container">
+    <h2>CONTENIDO DEL CURSO</h2>
+    
+    <div class="niveles-grid">
+      <div class="nivel-card">
+        <div class="nivel-label">Nivel A1 - Principiante</div>
+        <div class="nivel-content">
+          <img src="/src/assets/Rectangle-43.png" alt="Personas conversando" />
+          <p>
+            Comprender y usar expresiones cotidianas de uso muy frecuentes, 
+            presentarse y pedir información básica.
+          </p>
+        </div>
+      </div>
+      
+      <div class="nivel-card">
+        <div class="nivel-label">Nivel A2 - Elemental</div>
+        <div class="nivel-content">
+          <img src="/src/assets/Rectangle-45.png" alt="Mujeres en oficina" />
+          <p>
+            Comunicación simple, y directa sobre asuntos cotidianos, 
+            comprender frases y expresiones frecuentes.
+          </p>
+        </div>
+      </div>
+      
+      <div class="nivel-card">
+        <div class="nivel-label">Nivel B1 - Intermedio</div>
+        <div class="nivel-content">
+          <img src="/src/assets/Rectangle-48.png" alt="Jóvenes conversando" />
+          <p>
+            Expresar ideas con mas claridad, hablar de experiencias, 
+            planes, dar opiniones y justificar.
+          </p>
+        </div>
+      </div>
+      
+      <div class="nivel-card">
+        <div class="nivel-label">Nivel B2 - Intermedio Alto</div>
+        <div class="nivel-content">
+          <img src="/src/assets/Rectangle-51.png" alt="Profesionales caminando" />
+          <p>
+            Interactuar con fluidez, comprender textos complejos, 
+            defender ideas, escribir textos detallados.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contenido-curso {
+    background-color: white;
+    padding: 5rem 0;
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .container h2 {
+    font-family: 'Satoshi', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #003049;
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  
+  .niveles-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+  
+  .nivel-card {
+    text-align: center;
+  }
+  
+  .nivel-label {
+    background-color: #C1121F;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+  }
+  
+  .nivel-content {
+    background-color: #003049;
+    border-radius: 16px;
+    padding: 2rem;
+    color: white;
+  }
+  
+  .nivel-content img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .nivel-content p {
+    font-family: 'Satoshi', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: white;
+    margin: 0;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .contenido-curso {
+      padding: 3rem 0;
+    }
+    
+    .container {
+      width: 95%;
+    }
+    
+    .container h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .niveles-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .nivel-card {
+      margin-bottom: 1rem;
+    }
+    
+    .nivel-label {
+      font-size: 1rem;
+      padding: 0.6rem 1.2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .nivel-content {
+      padding: 1.5rem;
+    }
+    
+    .nivel-content img {
+      height: 180px;
+      margin-bottom: 1rem;
+    }
+    
+    .nivel-content p {
+      font-size: 0.95rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .contenido-curso {
+      padding: 2rem 0;
+    }
+    
+    .container {
+      width: 98%;
+    }
+    
+    .container h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .niveles-grid {
+      gap: 1.5rem;
+    }
+    
+    .nivel-label {
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+    }
+    
+    .nivel-content {
+      padding: 1rem;
+    }
+    
+    .nivel-content img {
+      height: 150px;
+    }
+    
+    .nivel-content p {
+      font-size: 0.9rem;
+    }
+  }
+</style>

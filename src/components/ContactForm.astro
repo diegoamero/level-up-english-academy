@@ -1,0 +1,272 @@
+---
+// Contact Form component with JavaScript functionality
+---
+
+<div class="contact-form" id="comenzar">
+  <form id="contactForm">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="nombre">Nombre*</label>
+        <input type="text" id="nombre" name="nombre" required />
+      </div>
+
+      <div class="form-group">
+        <label for="apellido">Apellido*</label>
+        <input type="text" id="apellido" name="apellido" required />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Correo Electrónico*</label>
+      <input type="email" id="email" name="email" required />
+    </div>
+
+    <div class="form-group">
+      <label for="lugar">Lugar de donde verá el curso</label>
+      <select id="lugar" name="lugar">
+        <option value="">Selecciona una opción</option>
+        <option value="casa">Casa</option>
+        <option value="oficina">Oficina</option>
+        <option value="otro">Otro</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="telefono">Número de Teléfono*</label>
+      <input type="tel" id="telefono" name="telefono" required />
+    </div>
+
+    <div class="form-group radio-group">
+      <label>¿Para quién es el curso?</label>
+      <div class="radio-options">
+        <label class="radio-option">
+          <input type="radio" name="destinatario" value="para-mi" />
+          <span>Para mi</span>
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="destinatario" value="para-hijo" />
+          <span>Para mi hijo/a</span>
+        </label>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn">Comienza ahora</button>
+  </form>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("contactForm") as HTMLFormElement;
+
+    if (form) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Obtener los datos del formulario
+        const formData = new FormData(form);
+        const data: Record<string, string> = {};
+
+        for (const [key, value] of formData.entries()) {
+          if (typeof value === "string") {
+            data[key] = value;
+          }
+        }
+
+        // Validar campos requeridos
+        if (!data.nombre || !data.apellido || !data.email || !data.telefono) {
+          alert("Por favor, completa todos los campos requeridos.");
+          return;
+        }
+
+        // Validar email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(data.email)) {
+          alert("Por favor, ingresa un email válido.");
+          return;
+        }
+
+        // Simular envío del formulario
+        const submitBtn = form.querySelector(
+          ".submit-btn"
+        ) as HTMLButtonElement;
+        if (submitBtn) {
+          const originalText = submitBtn.textContent || "";
+
+          submitBtn.textContent = "Enviando...";
+          submitBtn.disabled = true;
+
+          // Simular delay de envío
+          setTimeout(() => {
+            alert(
+              "¡Gracias por tu interés! Nos pondremos en contacto contigo pronto."
+            );
+            form.reset();
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+          }, 2000);
+        }
+      });
+    }
+  });
+</script>
+
+<style>
+  .contact-form {
+    background-color: #fdf0d5;
+    padding: 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .form-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-row .form-group {
+    flex: 1;
+    margin-bottom: 0;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: "Satoshi", sans-serif;
+    font-weight: 600;
+    color: #003049;
+    font-size: 0.9rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 0.6rem;
+    border: none;
+    border-bottom: 2px solid #003049;
+    background: transparent;
+    font-family: "Satoshi", sans-serif;
+    font-size: 0.9rem;
+    color: #003049;
+    transition: border-color 0.3s ease;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus {
+    outline: none;
+    border-bottom-color: #c1121f;
+  }
+
+  .radio-group label {
+    margin-bottom: 0.5rem;
+  }
+
+  .radio-options {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .radio-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+
+  .radio-option input[type="radio"] {
+    width: auto;
+    margin: 0;
+  }
+
+  .radio-option span {
+    font-family: "Satoshi", sans-serif;
+    color: #003049;
+    font-size: 0.9rem;
+  }
+
+  .submit-btn {
+    width: 100%;
+    background-color: #c1121f;
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-family: "Satoshi", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 0.5rem;
+  }
+
+  .submit-btn:hover:not(:disabled) {
+    background-color: #a00f1a;
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .contact-form {
+      height: auto;
+      padding: 1.5rem;
+      width: 100%;
+    }
+
+    .form-row {
+      flex-direction: row;
+      gap: 0.8rem;
+    }
+
+    .form-row .form-group {
+      margin-bottom: 0;
+    }
+
+    .radio-options {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-size: 1rem;
+    }
+
+    .form-group input,
+    .form-group select {
+      font-size: 1rem;
+      padding: 0.8rem;
+    }
+
+    .submit-btn {
+      font-size: 1.1rem;
+      padding: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .contact-form {
+      padding: 1rem;
+      border-radius: 16px;
+    }
+
+    .form-row {
+      gap: 0.6rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+  }
+</style>
