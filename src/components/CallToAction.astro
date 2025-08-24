@@ -6,102 +6,102 @@
   <div class="container">
     <div class="content">
       <h2>¡NO LO PIENSES MAS! Aprende hoy mismo</h2>
-      <button class="cta-button" onclick="scrollToForm()">Llenar formulario</button>
+      <a href="#comenzar" class="cta-button">Llenar formulario</a>
     </div>
   </div>
 </section>
 
 <style>
   .call-to-action {
-    background-color: #C1121F;
+    background-color: #c1121f;
     padding: 3rem 0;
   }
-  
+
   .container {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
   }
-  
+
   .content {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 2rem;
   }
-  
+
   .content h2 {
-    font-family: 'Satoshi', sans-serif;
+    font-family: "Satoshi", sans-serif;
     font-size: 2.5rem;
     font-weight: 700;
     color: white;
     margin: 0;
     flex: 1;
   }
-  
+
   .cta-button {
     background-color: white;
-    color: #C1121F;
+    color: #c1121f;
     border: none;
     padding: 1rem 2rem;
     border-radius: 8px;
-    font-family: 'Satoshi', sans-serif;
+    font-family: "Satoshi", sans-serif;
     font-size: 1.2rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     white-space: nowrap;
   }
-  
+
   .cta-button:hover {
     background-color: #f0f0f0;
     transform: translateY(-2px);
   }
-  
+
   /* Responsive design */
   @media (max-width: 768px) {
     .call-to-action {
       padding: 2rem 0;
     }
-    
+
     .container {
       width: 95%;
     }
-    
+
     .content {
       flex-direction: column;
       text-align: center;
       gap: 1.5rem;
     }
-    
+
     .content h2 {
       font-size: 2rem;
       line-height: 1.2;
     }
-    
+
     .cta-button {
       font-size: 1.1rem;
       padding: 0.8rem 1.5rem;
     }
   }
-  
+
   @media (max-width: 480px) {
     .call-to-action {
       padding: 1.5rem 0;
     }
-    
+
     .container {
       width: 98%;
     }
-    
+
     .content {
       gap: 1rem;
     }
-    
+
     .content h2 {
       font-size: 1.6rem;
     }
-    
+
     .cta-button {
       font-size: 1rem;
       padding: 0.7rem 1.2rem;
@@ -111,11 +111,11 @@
 
 <script>
   function scrollToForm() {
-    const form = document.querySelector('.contact-form');
+    const form = document.querySelector(".contact-form");
     if (form) {
-      form.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'center'
+      form.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
       });
     }
   }

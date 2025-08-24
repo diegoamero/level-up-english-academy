@@ -6,16 +6,44 @@
   <div class="header-container">
     <div class="logo">
       <img src="/src/assets/logo.png" alt="Level UP ENGLISH ACADEMY" />
-      <h1>levelUP ENGLISH ACADEMY</h1>
+      <h1>Level Up English Academy</h1>
     </div>
-    
+
     <nav class="navigation">
       <a href="#academia">La Academia</a>
       <a href="#como-funciona">Como funciona</a>
       <a href="#comenzar" onclick="scrollToForm()">Comenzar</a>
     </nav>
-    
+
     <div class="contact-number">
+      <span>+58 412-0160049</span>
+    </div>
+
+    <!-- Menú hamburguesa para tablet y mobile -->
+    <button class="hamburger-menu" id="hamburgerBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Menú móvil desplegable -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-header">
+      <h2>Menú</h2>
+      <button class="close-menu" id="closeMenuBtn">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <nav class="mobile-navigation">
+      <a href="#academia">La Academia</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#comenzar" onclick="scrollToForm()">Comenzar</a>
+    </nav>
+
+    <div class="mobile-contact">
       <span>+58 412-0160049</span>
     </div>
   </div>
@@ -24,14 +52,18 @@
 <style>
   .header {
     background-color: #003049;
-    padding: 1rem 0;
+    padding-top: 1.5rem;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
+    overflow: visible; /* Permitir que el logo sobresalga */
   }
-  
+
   .header-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -40,147 +72,349 @@
     align-items: center;
     padding: 0 2rem;
   }
-  
+
   .logo {
     display: flex;
     align-items: center;
     gap: 1rem;
+    position: relative; /* Para posicionar el logo */
+    margin-bottom: -20px; /* Hacer que el logo sobresalga del header */
   }
-  
+
   .logo img {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
+    position: relative;
+    z-index: 1001;
   }
-  
+
   .logo h1 {
     color: white;
-    font-family: 'Satoshi', sans-serif;
+    font-family: "Satoshi", sans-serif;
     font-weight: 600;
     font-size: 1.2rem;
     margin: 0;
     padding: 0;
   }
-  
+
   .navigation {
     display: flex;
     gap: 2rem;
   }
-  
+
   .navigation a {
     color: white;
     text-decoration: none;
-    font-family: 'Satoshi', sans-serif;
+    font-family: "Satoshi", sans-serif;
     font-weight: 500;
     transition: opacity 0.3s ease;
   }
-  
+
   .navigation a:hover {
     opacity: 0.8;
   }
-  
+
   .contact-number {
     background-color: #003049;
     border: 2px solid white;
     border-radius: 8px;
     padding: 0.5rem 1rem;
   }
-  
+
   .contact-number span {
     color: white;
-    font-family: 'Satoshi', sans-serif;
+    font-family: "Satoshi", sans-serif;
     font-weight: 600;
   }
-  
+
+  /* Menú hamburguesa (oculto por defecto) */
+  .hamburger-menu {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    gap: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .hamburger-menu span {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Animación del botón hamburguesa cuando está activo */
+  .hamburger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+
+  .hamburger-menu.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  .hamburger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+
+  /* Menú móvil desplegable (oculto por defecto) */
+  .mobile-menu {
+    display: block;
+    background-color: #003049;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 1rem;
+  }
+
+  .mobile-header h2 {
+    color: white;
+    font-family: "Satoshi", sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin: 0;
+  }
+
+  .close-menu {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .close-menu span {
+    width: 20px;
+    height: 2px;
+    background-color: white;
+    border-radius: 1px;
+    transition: all 0.3s ease;
+  }
+
+  .close-menu span:nth-child(1) {
+    transform: rotate(45deg);
+  }
+
+  .close-menu span:nth-child(2) {
+    transform: rotate(-45deg);
+  }
+
+  .mobile-navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .mobile-navigation a {
+    color: white;
+    text-decoration: none;
+    font-family: "Satoshi", sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .mobile-navigation a:hover {
+    color: #fdf0d5;
+    padding-left: 1rem;
+  }
+
+  .mobile-contact {
+    text-align: center;
+    padding: 1rem 2rem;
+  }
+
+  .mobile-contact span {
+    color: white;
+    font-family: "Satoshi", sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
   /* Responsive design */
   @media (max-width: 768px) {
     .header {
       padding: 0.8rem 0;
     }
-    
+
     .header-container {
       padding: 0 1rem;
       gap: 1rem;
+      flex-direction: column; /* Cambiar a columna para centrar */
+      text-align: center;
     }
-    
+
     .logo {
       gap: 0.8rem;
+      margin-bottom: -15px; /* Ajustar para tablet */
+      flex-direction: column; /* Logo y texto en columna */
+      align-items: center;
     }
-    
+
     .logo img {
-      width: 40px;
-      height: 40px;
+      width: 70px; /* Logo más grande en tablet */
+      height: 70px;
     }
-    
+
     .logo h1 {
-      font-size: 1rem;
+      font-size: 1.4rem; /* Texto más grande */
       white-space: nowrap;
+      text-align: center;
     }
-    
-    .navigation {
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-    
-    .navigation a {
-      font-size: 0.9rem;
-      white-space: nowrap;
-    }
-    
+
+    /* Ocultar navegación y contacto en tablet */
+    .navigation,
     .contact-number {
-      padding: 0.4rem 0.8rem;
-      white-space: nowrap;
+      display: none;
     }
-    
-    .contact-number span {
-      font-size: 0.9rem;
+
+    /* Mostrar menú hamburguesa */
+    .hamburger-menu {
+      display: flex;
+      position: absolute; /* Posicionar absolutamente */
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* Estilos para el menú móvil */
+    .mobile-menu.active {
+      max-height: 300px;
+      margin-top: 1.5rem;
+      opacity: 1;
+      transform: translateY(0);
     }
   }
-  
+
   @media (max-width: 480px) {
     .header-container {
       padding: 0 0.8rem;
       gap: 0.8rem;
+      flex-direction: column; /* Mantener en columna */
+      text-align: center;
     }
-    
+
     .logo {
       gap: 0.6rem;
+      margin-bottom: -10px; /* Ajustar para mobile */
+      flex-direction: column; /* Logo y texto en columna */
+      align-items: center;
     }
-    
+
     .logo img {
-      width: 35px;
-      height: 35px;
+      width: 60px; /* Logo más grande en mobile */
+      height: 60px;
     }
-    
+
     .logo h1 {
-      display: none; /* Ocultar el texto en mobile */
+      font-size: 1.2rem; /* Texto visible en mobile */
+      white-space: nowrap;
+      text-align: center;
+      display: block; /* Mostrar el título en mobile */
     }
-    
+
     .navigation {
       gap: 0.8rem;
     }
-    
+
     .navigation a {
       font-size: 0.8rem;
     }
-    
+
     .contact-number {
       padding: 0.3rem 0.6rem;
     }
-    
+
     .contact-number span {
       font-size: 0.8rem;
+    }
+
+    /* Posicionar menú hamburguesa */
+    .hamburger-menu {
+      position: absolute;
+      right: 0.8rem;
+      top: 50%;
+      transform: translateY(-50%);
     }
   }
 </style>
 
 <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Agregar event listener al botón hamburguesa
+    const hamburgerBtn = document.getElementById("hamburgerBtn");
+    const closeMenuBtn = document.getElementById("closeMenuBtn");
+
+    if (hamburgerBtn) {
+      hamburgerBtn.addEventListener("click", toggleMobileMenu);
+    }
+
+    if (closeMenuBtn) {
+      closeMenuBtn.addEventListener("click", closeMobileMenu);
+    }
+
+    // Cerrar menú al hacer clic fuera
+    document.addEventListener("click", function (event) {
+      const header = document.querySelector(".header");
+      const hamburger = document.querySelector(".hamburger-menu");
+
+      if (header && !header.contains(event.target as Node)) {
+        closeMobileMenu();
+      }
+    });
+  });
+
   function scrollToForm() {
-    const form = document.querySelector('.contact-form');
+    const form = document.querySelector(".contact-form");
     if (form) {
-      form.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'center'
+      form.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
       });
+    }
+    // Cerrar menú móvil después de hacer clic
+    closeMobileMenu();
+  }
+
+  function toggleMobileMenu() {
+    const mobileMenu = document.getElementById("mobileMenu");
+    const hamburgerBtn = document.getElementById("hamburgerBtn");
+
+    if (mobileMenu && hamburgerBtn) {
+      mobileMenu.classList.toggle("active");
+      hamburgerBtn.classList.toggle("active");
+    }
+  }
+
+  function closeMobileMenu() {
+    const mobileMenu = document.getElementById("mobileMenu");
+    const hamburgerBtn = document.getElementById("hamburgerBtn");
+
+    if (mobileMenu && hamburgerBtn) {
+      mobileMenu.classList.remove("active");
+      hamburgerBtn.classList.remove("active");
     }
   }
 </script>
