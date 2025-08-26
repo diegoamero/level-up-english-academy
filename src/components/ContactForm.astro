@@ -3,7 +3,7 @@
 ---
 
 <div class="contact-form" id="comenzar">
-  <form id="contactForm">
+  <form id="contactForm" action="https://formspree.io/f/xqadkabk" method="POST">
     <div class="form-row">
       <div class="form-group">
         <label for="nombre">Nombre*</label>
@@ -54,9 +54,9 @@
   </form>
 </div>
 
-<script>
+<script is:inline>
   document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("contactForm") as HTMLFormElement;
+    const form = document.getElementById("contactForm");
 
     if (form) {
       form.addEventListener("submit", function (e) {
@@ -64,7 +64,7 @@
 
         // Obtener los datos del formulario
         const formData = new FormData(form);
-        const data: Record<string, string> = {};
+        const data = {};
 
         for (const [key, value] of formData.entries()) {
           if (typeof value === "string") {
@@ -85,26 +85,41 @@
           return;
         }
 
-        // Simular envío del formulario
-        const submitBtn = form.querySelector(
-          ".submit-btn"
-        ) as HTMLButtonElement;
-        if (submitBtn) {
-          const originalText = submitBtn.textContent || "";
+        // Cambiar estado del botón
+        const submitBtn = form.querySelector(".submit-btn");
+        const originalText = submitBtn.textContent;
 
-          submitBtn.textContent = "Enviando...";
-          submitBtn.disabled = true;
+        submitBtn.textContent = "Enviando...";
+        submitBtn.disabled = true;
 
-          // Simular delay de envío
-          setTimeout(() => {
+        // Enviar formulario a Formspree usando fetch
+        fetch(form.action, {
+          method: "POST",
+          body: new URLSearchParams(new FormData(form)).toString(),
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        })
+          .then((response) => {
+            if (response.ok) {
+              alert(
+                "¡Gracias por tu interés! Nos pondremos en contacto contigo pronto."
+              );
+              form.reset();
+            } else {
+              throw new Error("Error en el envío");
+            }
+          })
+          .catch((error) => {
             alert(
-              "¡Gracias por tu interés! Nos pondremos en contacto contigo pronto."
+              "Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo."
             );
-            form.reset();
+          })
+          .finally(() => {
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
-          }, 2000);
-        }
+          });
       });
     }
   });
