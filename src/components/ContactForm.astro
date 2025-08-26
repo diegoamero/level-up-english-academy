@@ -1,9 +1,206 @@
 ---
 // Contact Form component with JavaScript functionality
+
+// Lista de países para el formulario
+const paises = [
+  "Afganistán",
+  "Albania",
+  "Argelia",
+  "Andorra",
+  "Angola",
+  "Antigua y Barbuda",
+  "Argentina",
+  "Armenia",
+  "Australia",
+  "Austria",
+  "Azerbaiyán",
+  "Bahamas",
+  "Bahréin",
+  "Bangladesh",
+  "Barbados",
+  "Bielorrusia",
+  "Bélgica",
+  "Belice",
+  "Benín",
+  "Bután",
+  "Bolivia",
+  "Bosnia y Herzegovina",
+  "Botsuana",
+  "Brasil",
+  "Brunéi",
+  "Bulgaria",
+  "Burkina Faso",
+  "Burundi",
+  "Camboya",
+  "Camerún",
+  "Canadá",
+  "Cabo Verde",
+  "República Centroafricana",
+  "Chad",
+  "Chile",
+  "Porcelana",
+  "Colombia",
+  "Comoras",
+  "Congo (Brazzaville)",
+  "Congo",
+  "Costa Rica",
+  "Costa de Marfil",
+  "Croacia",
+  "Cuba",
+  "Chipre",
+  "República Checa",
+  "Dinamarca",
+  "Yibuti",
+  "Dominica",
+  "República Dominicana",
+  "Timor Oriental (Timor Timur)",
+  "Ecuador",
+  "Egipto",
+  "El Salvador",
+  "Guinea Ecuatorial",
+  "Eritrea",
+  "Estonia",
+  "Etiopía",
+  "Fiyi",
+  "Finlandia",
+  "Francia",
+  "Gabón",
+  "Gambia, La",
+  "Georgia",
+  "Alemania",
+  "Ghana",
+  "Grecia",
+  "Granada",
+  "Guatemala",
+  "Guinea",
+  "Guinea-Bissau",
+  "Guayana",
+  "Haití",
+  "Honduras",
+  "Hungría",
+  "Islandia",
+  "India",
+  "Indonesia",
+  "Irán",
+  "Irak",
+  "Irlanda",
+  "Israel",
+  "Italia",
+  "Jamaica",
+  "Japón",
+  "Jordán",
+  "Kazajstán",
+  "Kenia",
+  "Kiribati",
+  "Corea del Norte",
+  "Corea del Sur",
+  "Kuwait",
+  "Kirguistán",
+  "Laos",
+  "Letonia",
+  "Líbano",
+  "Lesoto",
+  "Liberia",
+  "Libia",
+  "Liechtenstein",
+  "Lituania",
+  "Luxemburgo",
+  "Macedonia",
+  "Madagascar",
+  "Malawi",
+  "Malasia",
+  "Maldivas",
+  "Malí",
+  "Malta",
+  "Islas Marshall",
+  "Mauritania",
+  "Mauricio",
+  "México",
+  "Micronesia",
+  "Moldavia",
+  "Mónaco",
+  "Mongolia",
+  "Marruecos",
+  "Mozambique",
+  "Myanmar",
+  "Namibia",
+  "Nauru",
+  "Nepal",
+  "Países Bajos",
+  "Nueva Zelanda",
+  "Nicaragua",
+  "Níger",
+  "Nigeria",
+  "Noruega",
+  "Omán",
+  "Pakistán",
+  "Palau",
+  "Panamá",
+  "Papúa Nueva Guinea",
+  "Paraguay",
+  "Perú",
+  "Filipinas",
+  "Polonia",
+  "Portugal",
+  "Katar",
+  "Rumania",
+  "Rusia",
+  "Ruanda",
+  "San Cristóbal y Nieves",
+  "Santa Lucía",
+  "San Vicente",
+  "Samoa",
+  "San Marino",
+  "Santo Tomé y Príncipe",
+  "Arabia Saudita",
+  "Senegal",
+  "Serbia y Montenegro",
+  "Seychelles",
+  "Sierra Leona",
+  "Singapur",
+  "Eslovaquia",
+  "Eslovenia",
+  "Islas Salomón",
+  "Somalia",
+  "Sudáfrica",
+  "España",
+  "Sri Lanka",
+  "Sudán",
+  "Surinam",
+  "Suazilandia",
+  "Suecia",
+  "Suiza",
+  "Siria",
+  "Taiwán",
+  "Tayikistán",
+  "Tanzania",
+  "Tailandia",
+  "Ir",
+  "Tonga",
+  "Trinidad y Tobago",
+  "Túnez",
+  "Pavo",
+  "Turkmenistán",
+  "Tuvalu",
+  "Uganda",
+  "Ucrania",
+  "Emiratos Árabes Unidos",
+  "Reino Unido",
+  "Estados Unidos",
+  "Uruguay",
+  "Uzbekistán",
+  "Vanuatu",
+  "Ciudad del Vaticano",
+  "Venezuela",
+  "Vietnam",
+  "Yemen",
+  "Zambia",
+  "Zimbabue",
+];
 ---
 
 <div class="contact-form" id="comenzar">
-  <form id="contactForm" action="https://formspree.io/f/xqadkabk" method="POST">
+  <form id="contactForm" action="https://formspree.io/f/meolqebn" method="POST">
     <div class="form-row">
       <div class="form-group">
         <label for="nombre">Nombre*</label>
@@ -22,12 +219,10 @@
     </div>
 
     <div class="form-group">
-      <label for="lugar">Lugar de donde verá el curso</label>
-      <select id="lugar" name="lugar">
-        <option value="">Selecciona una opción</option>
-        <option value="casa">Casa</option>
-        <option value="oficina">Oficina</option>
-        <option value="otro">Otro</option>
+      <label for="pais">País desde donde verá el curso*</label>
+      <select id="pais" name="pais" required>
+        <option value="">Selecciona tu país</option>
+        {paises.map((pais) => <option value={pais}>{pais}</option>)}
       </select>
     </div>
 
@@ -73,7 +268,13 @@
         }
 
         // Validar campos requeridos
-        if (!data.nombre || !data.apellido || !data.email || !data.telefono) {
+        if (
+          !data.nombre ||
+          !data.apellido ||
+          !data.email ||
+          !data.telefono ||
+          !data.pais
+        ) {
           alert("Por favor, completa todos los campos requeridos.");
           return;
         }
@@ -159,7 +360,7 @@
     font-family: "Satoshi", sans-serif;
     font-weight: 600;
     color: #003049;
-    font-size: 0.9rem;
+    font-size: 1.5rem;
   }
 
   .form-group input,

@@ -28,14 +28,6 @@
 
   <!-- Menú móvil desplegable -->
   <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-header">
-      <h2>Menú</h2>
-      <button class="close-menu" id="closeMenuBtn">
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-
     <nav class="mobile-navigation">
       <a href="#academia">La Academia</a>
       <a href="#como-funciona">Como funciona</a>
@@ -61,7 +53,7 @@
   }
 
   .header-container {
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -251,6 +243,35 @@
   }
 
   /* Responsive design */
+  @media (min-width: 1300px) {
+    .logo img {
+      width: 140px;
+      height: 140px;
+      position: relative;
+      z-index: 1001;
+      gap: 1rem;
+    }
+
+    .logo h1 {
+      color: white;
+      font-family: "Satoshi", sans-serif;
+      font-weight: 600;
+      font-size: 2rem;
+      margin-left: 1rem;
+      padding: 0;
+    }
+
+    .navigation {
+      display: flex;
+      justify-content: space-around;
+      gap: 2rem;
+    }
+
+    .navigation a {
+      font-size: 1.6rem;
+    }
+  }
+
   @media (max-width: 768px) {
     .header {
       padding: 0.8rem 0;
@@ -299,7 +320,7 @@
     /* Estilos para el menú móvil */
     .mobile-menu.active {
       max-height: 300px;
-      margin-top: 1.5rem;
+      margin-top: -14px;
       opacity: 1;
       transform: translateY(0);
     }
